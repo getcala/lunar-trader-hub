@@ -14,16 +14,135 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admin_settings: {
+        Row: {
+          fbs_partner_link: string | null
+          id: string
+          telegram_bot_username: string | null
+          updated_at: string
+          usdt_wallet_address: string | null
+        }
+        Insert: {
+          fbs_partner_link?: string | null
+          id?: string
+          telegram_bot_username?: string | null
+          updated_at?: string
+          usdt_wallet_address?: string | null
+        }
+        Update: {
+          fbs_partner_link?: string | null
+          id?: string
+          telegram_bot_username?: string | null
+          updated_at?: string
+          usdt_wallet_address?: string | null
+        }
+        Relationships: []
+      }
+      mt5_accounts: {
+        Row: {
+          account_id: string
+          commission_paid: boolean | null
+          created_at: string
+          current_balance: number | null
+          id: string
+          initial_deposit: number | null
+          password: string
+          profit_target_reached: boolean | null
+          server: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          account_id: string
+          commission_paid?: boolean | null
+          created_at?: string
+          current_balance?: number | null
+          id?: string
+          initial_deposit?: number | null
+          password: string
+          profit_target_reached?: boolean | null
+          server: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          account_id?: string
+          commission_paid?: boolean | null
+          created_at?: string
+          current_balance?: number | null
+          id?: string
+          initial_deposit?: number | null
+          password?: string
+          profit_target_reached?: boolean | null
+          server?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string
+          id: string
+          telegram_handle: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          full_name: string
+          id?: string
+          telegram_handle: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string
+          id?: string
+          telegram_handle?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +269,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
